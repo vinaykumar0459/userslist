@@ -1,0 +1,93 @@
+<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="panel-title">Sign Up</div>
+            <div style="float:right; font-size: 85%; position: relative; top:-10px"></div>
+        </div>  
+        <div class="panel-body" >
+            <form id="signupform" #f="ngForm" novalidate (ngSubmit)="signupform(User)" class="form-horizontal" role="form"> 
+               <div class="form-group">
+                    <label for="name" class="col-md-4 control-label">Name</label>
+                    <div class="col-md-8">
+                        <input type="text" [(ngModel)]="User.name" #name="ngModel" pattern="^[a-zA-Z\s]+$" minlength="5" maxlength="20" class="form-control" name="name" placeholder="Enter your Name">
+                        <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert-danger">
+                          <p [hidden]="!name.errors.required">Please Enter your Name</p>
+                          <p [hidden]="!name.errors.minlength">Name minimum 5 characters</p>
+                          <p [hidden]="!name.errors.maxlength">Name should not exceed 20 characters</p>
+                          <p [hidden]="!name.errors.pattern">Name should be Alphabets</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="col-md-4 control-label">Username</label>
+                    <div class="col-md-8">
+                        <input type="text" [(ngModel)]="User.username" #username="ngModel" minlength="8" maxlength="24" class="form-control" name="username" placeholder="Enter your Username"> 
+                        <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert-danger">
+                          <p [hidden]="!username.errors.required">Please Enter your Username</p>
+                          <p [hidden]="!username.errors.minlength">Username minimum 8 characters</p>
+                          <p [hidden]="!username.errors.maxlength">Username should not exceed 24 characters</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-md-4 control-label">Email</label>
+                    <div class="col-md-8">
+                        <input type="text" #email="ngModel" [(ngModel)]="User.email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" name="email" placeholder="Enter your Email Address">
+                        <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert-danger">
+                          <p [hidden]="!email.errors.required">Please Enter Email ID</p>
+                          <p [hidden]="!email.errors.pattern">Email ID should like 'vinay@gmail.com'</p>
+                        </div>
+                    </div>
+                </div>              
+                <div class="form-group">
+                    <label for="password" class="col-md-4 control-label">Create Password</label>
+                    <div class="col-md-8">
+                        <input type="password" #password="ngModel" [(ngModel)]="User.password" name="password" validateEqual="confirmpassword" reverse="true" pattern="((?=.*\d)(?=.*[a-zA-Z]).{4,20})" class="form-control" placeholder="Create Password">
+                        <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert-danger">
+                          <p [hidden]="!password.errors.required">Please create your password</p>
+                          <p [hidden]="!password.errors.pattern">Password Must Contain(4-20) 1-char! 1-number!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmpassword" class="col-md-4 control-label">Confirm Password</label>
+                    <div class="col-md-8">
+                        <input type="password" #confirmpassword="ngModel" name="confirmpassword" [(ngModel)]="User.confirmpassword"  validateEqual="password" reverse="false" pattern="((?=.*\d)(?=.*[a-zA-Z]).{4,20})" class="form-control" placeholder="Confirm Password">
+                        <!--<div *ngIf="confirmPassword.valid || (confirmPassword.pristine && !f.submitted)" class="alert-danger">-->
+                          <p [hidden]="confirmpassword.valid || (confirmpassword.pristine && !f.submitted)">Password mismatch</p>
+                        <!--</div>-->
+                    </div>
+                </div>   
+                <div class="form-group">
+                    <label for="gender" class="col-md-4 control-label">Gender</label>
+                    <div class="checkbox col-md-3">
+                      <label><input type="radio" name="gender" #gender="ngModel" [(ngModel)]="User.gender" value="Male">Male</label>
+                    </div>
+                    <div class="checkbox col-md-3">
+                      <label><input type="radio" name="gender" #gender="ngModel" [(ngModel)]="User.gender" value="Female">Female</label>
+                    </div>
+                    <div *ngIf="gender.errors" class="alert-danger">
+                          <p [hidden]="!gender.errors">Select your gender</p>
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <label for="uploadpic" class="col-md-4 control-label">Upload your photo</label>
+                    <div class="col-md-8">
+                        <input type="file" (change)="fileChange($event)" placeholder="Upload file" >
+                    </div>
+                </div> 
+                
+                <div class="form-group">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-8"><flash-messages></flash-messages></div>
+                </div>
+                <div class="form-group">
+                   <div class="col-md-4"> </div>                                    
+                    <div class="col-md-8">
+                        <button id="btn-signup" [disabled]="User.invalid" (click)="signupform(User)" type="button" class="btn btn-info"><i class="icon-hand-right"></i>Sign Up</button>
+                    </div>
+                </div>             
+            </form>
+          </div>
+    </div>     
+</div>

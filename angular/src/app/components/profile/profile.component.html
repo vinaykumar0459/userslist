@@ -1,0 +1,21 @@
+<h1>profile</h1>
+
+<div class="col-md-6" style="padding-top: 30px; ">
+<table class="table table-bordered" *ngFor="let user of users">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>{{user.username}}</th>
+      </tr>
+       <tr>
+        <th>Email ID</th>
+        <th>{{user.email}}</th>
+      </tr>
+       <tr>
+        <th>Gender</th>
+        <th>{{user.gender}}</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  </div>

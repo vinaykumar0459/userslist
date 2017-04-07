@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+.form-horizontal .ng-invalid { border-left: 5px solid red;}
+.form-horizontal .ng-valid { border-left: 5px solid green;}
+.logo img {     width: 240px;
+    padding-top: 3px;}
+.dropdownuser { float: left; padding-top: 18px;}
+#filter input { width: 350px; height: 35px; padding-left: 15px;}
+.userdata { cursor: pointer; text-decoration: underline;}
